@@ -1,0 +1,41 @@
+.editorial-page {
+    padding: 20px;
+    text-align: left;
+  }
+  
+  .editorial-content {
+    margin-bottom: 40px;
+  }
+  
+  .join-us-section {
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .join-us-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+  }
+  
+  .join-us-section p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+  
+  .join-us-button {
+    background-color: rgb(58, 116, 241);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .join-us-button:hover {
+    background-color:  rgb(1, 79, 247);
+  }
+  

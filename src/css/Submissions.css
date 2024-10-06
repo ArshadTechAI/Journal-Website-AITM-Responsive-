@@ -1,0 +1,291 @@
+/* .required-field .form-control {
+    border-left: 4px solid red;
+  }
+   */
+
+
+   @import url('https://fonts.googleapis.com/css2?family=Anton&family=Jura:wght@300..700&display=swap');
+
+   *{
+       /* font-family: "Jura", sans-serif; */
+   }
+   
+   body{
+       padding: 20px;
+   }
+   
+   h2{
+       font-size: 30px;
+       font-weight: bolder;
+   }
+   
+   
+   li{
+       line-height: 2;
+   }
+   
+   .text_with_background{
+       font-size: 20px;
+       background-color: #D9E3F0;
+       padding: 10px 0px;
+       font-weight: bold;
+   }
+   
+   /* .input_contianer{
+       width: 80%;
+   } */
+   
+   .row_input_component{
+       width: 100%;
+       display: flex;
+       align-items: center;
+       justify-content: space-between;
+   }
+   
+   .column_input_component{
+       display: flex;
+       flex-direction: column;
+       flex: 1;
+       margin: 10px;
+   }
+   
+   .file_input {
+       flex-grow: 1; /* Make the file input take up remaining space */
+       margin-left: 10px; /* Add some space between label and input */
+     }
+   
+   /* ============input field css =========== */
+   .red_border_input {
+       width: 80%;
+       height: 40px;
+       border: none;
+       border-left: 3px solid #d32f2f;
+       background-color: #f0f0f0;
+       padding: 0 10px;
+       box-sizing: border-box;
+       font-size: 14px;
+       margin-bottom: 10px;
+       border-radius: 6px;
+     }
+   
+     /* .red_border_input {
+       border-left: 5px solid #d32f2f;
+       border-right: 1px solid grey;
+       border-top: 1px solid grey;
+       border-bottom: 1px solid grey;
+   } */
+   
+   .small_input{
+       /* flex: 20; */
+       height: 40px;
+       border: none;
+       border-left: 3px solid #d32f2f;
+       background-color: #f0f0f0;
+       padding: 0 10px;
+       box-sizing: border-box;
+       font-size: 14px;
+       margin-bottom: 10px;
+       border-radius: 6px;
+       margin: 10px 0px;
+   }
+   
+   
+   
+   
+   
+   
+   /* ============table css =========== */
+     /* .custom-table {
+       width: 100%;
+       border-collapse: collapse;
+     }
+     
+     .custom-table th,
+     .custom-table td {
+       padding: 8px;
+       text-align: left;
+     }
+     
+     .custom-table th {
+       background-color: #f4f4f4;
+       text-align: center;
+     }
+     
+     .table-input {
+       width: 100%;
+       height: 40px;
+       border: none;
+       background-color: #f0f0f0;
+       padding: 0 10px;
+       border-radius: 6px;
+       box-sizing: border-box;
+       font-size: 14px;
+     }
+     
+     
+     .name-input, .designation-input, .organization-input, .email-input, .mobile-input {
+       border-left: 3px solid #757575; 
+     }
+     
+     
+     .table-input::placeholder {
+       color: #757575;
+     }
+     
+     .custom-table td:first-child {
+       text-align: center;
+     }
+   
+   
+   
+   
+   
+   .required_field {
+       border-left: 3px solid #d32f2f;
+   }
+   
+   .not_required_field{
+       border-left: 3px solid gray;
+   }
+   
+   .error {
+       border-left: 3px solid red !important;
+   } */
+
+/* ============table css =========== */
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.custom-table th,
+.custom-table td {
+  padding: 8px;
+  text-align: left;
+}
+
+.custom-table th {
+  background-color: #f4f4f4;
+  text-align: center;
+}
+
+.table-input {
+  width: 100%;
+  height: 40px;
+  border: none;
+  background-color: #f0f0f0;
+  padding: 0 10px;
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.name-input,
+.designation-input,
+.organization-input,
+.email-input,
+.mobile-input {
+  border-left: 3px solid #757575; /* Grey border */
+}
+
+.table-input::placeholder {
+  color: #757575;
+}
+
+.custom-table td:first-child {
+  text-align: center;
+}
+
+/* Required and error styling */
+.required_field {
+  border-left: 3px solid #d32f2f;
+}
+
+.not_required_field {
+  border-left: 3px solid gray;
+}
+
+.error {
+  border-left: 3px solid red !important;
+}
+
+/* ========== Responsive for Mobile ========== */
+@media (max-width: 768px) {
+  .custom-table thead {
+    display: none; /* Hide the header on mobile */
+  }
+
+  .custom-table tr {
+    display: block;
+    margin-bottom: 15px;
+  }
+
+  .custom-table td {
+    display: block;
+    text-align: right;
+    position: relative;
+    padding-left: 50%;
+    padding-top: 10px;
+  }
+
+  .custom-table td::before {
+    content: attr(data-label); /* Add label for each cell */
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    white-space: nowrap;
+    font-weight: bold;
+  }
+
+  .table-input {
+    width: calc(100% - 20px); /* Adjust input width for padding */
+    margin: 5px 0;
+  }
+
+  .custom-table td:first-child {
+    text-align: left; /* Align the numbering on mobile */
+  }
+}
+
+
+
+
+
+
+
+   
+   /* ======================= loding indicator======================= */
+   .loading-overlay {
+       position: fixed;
+       top: 0;
+       left: 0;
+       width: 100%;
+       height: 100%;
+       background: rgba(0, 0, 0, 0.7);
+       z-index: 9999;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       backdrop-filter: blur(1px);
+     }
+     
+     .loading-indicator {
+       width: 50px;
+       height: 50px;
+     }
+     
+     .spinner {
+       border: 5px solid rgba(255, 255, 255, 0.5);
+       border-top: 5px solid #3498db;
+       border-radius: 50%;
+       width: 100%;
+       height: 100%;
+       animation: spin 1s linear infinite;
+     }
+     
+     @keyframes spin {
+       0% { transform: rotate(0deg); }
+       100% { transform: rotate(360deg); }
+     }
+     
+     

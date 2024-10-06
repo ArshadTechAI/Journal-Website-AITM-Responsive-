@@ -1,0 +1,50 @@
+
+.authors_desk{
+    width: 100%;
+    /* flex: 0 0 15%; */
+    /* height: 500px ; */
+    background-color: #efefef;
+    padding: 20px;
+    border-radius: 12px;
+}
+.authors_desk hr{
+    color: gray;
+}
+
+.authors_desk a{ 
+    text-decoration: underline;
+    font-size: medium;
+    color: #444444;
+    line-height: 2.5;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.authors_desk a:hover{ 
+    text-decoration: underline;
+    font-size: 17px;
+    color: blue;
+    line-height: 2.5;
+    cursor: pointer;
+
+}
+
+.submit_button {
+    width: 100%;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    background: linear-gradient(90deg, #003366 0%, #0085FF 100%);
+    /* text-transform: uppercase; */
+    transition: background 0.3s ease;
+  }
+  
+  .submit_button:hover {
+    background: linear-gradient(90deg, #0085FF 0%, #003366 100%);
+  }
+  
+  

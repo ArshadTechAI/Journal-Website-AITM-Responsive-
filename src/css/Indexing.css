@@ -1,0 +1,35 @@
+.indexing-page {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .logo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Creates a responsive grid */
+    gap: 20px;
+    justify-items: center;  /* Aligns items in the center */
+    margin-top: 20px;
+  }
+  
+  .logo-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc; /* Optional border for each item */
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .logo-item img {
+    max-width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
+  .logo-item p {
+    font-size: 1rem;
+    color: #333;
+  }
+  

@@ -1,0 +1,173 @@
+
+
+CREATE TABLE User (
+    UserID INT PRIMARY KEY,
+    Name VARCHAR(100),
+    Email VARCHAR(100) UNIQUE,
+    Phone VARCHAR(15),
+    Bio TEXT,  -- Moved from Profile
+    PhotoURL VARCHAR(255),  -- Moved from Profile
+    UserType ENUM('Host', 'Guest', 'Admin')  -- User type
+);
+
+CREATE TABLE Host (
+    HostID INT PRIMARY KEY,
+    UserID INT,
+    Phone VARCHAR(15),
+    FOREIGN KEY (UserID) REFERENCES User(UserID)
+);
+
+CREATE TABLE Guest (
+    GuestID INT PRIMARY KEY,
+    UserID INT,
+    FOREIGN KEY (UserID) REFERENCES User(UserID)
+);
+
+CREATE TABLE Admin (
+    AdminID INT PRIMARY KEY,
+    UserID INT,
+    FOREIGN KEY (UserID) REFERENCES User(UserID)
+);
+
+CREATE TABLE City (
+    CityID INT PRIMARY KEY,
+    Name VARCHAR(100),
+    State VARCHAR(100),
+    Country VARCHAR(100)
+);
+
+CREATE TABLE Listing (
+    ListingID INT PRIMARY KEY,
+    HostID INT,
+    CityID INT,
+    Title VARCHAR(100),
+    Description TEXT,
+    Price DECIMAL(10, 2),
+    Location VARCHAR(255),
+    PhotoURL VARCHAR(255),
+    HouseRules TEXT,  -- New column for house rules
+    NeighborhoodInfo TEXT,  -- New column for neighborhood information
+    FOREIGN KEY (HostID) REFERENCES Host(HostID),
+    FOREIGN KEY (CityID) REFERENCES City(CityID)
+);
+
+CREATE TABLE Availability (
+    AvailabilityID INT PRIMARY KEY,
+    ListingID INT,
+    Date DATE,
+    IsAvailable BOOLEAN,
+    FOREIGN KEY (ListingID) REFERENCES Listing(ListingID)
+);
+
+CREATE TABLE Booking (
+    BookingID INT PRIMARY KEY,
+    GuestID INT,
+    ListingID INT,
+    StartDate DATE,
+    EndDate DATE,
+    TotalPrice DECIMAL(10, 2),
+    FOREIGN KEY (GuestID) REFERENCES Guest(GuestID),
+    FOREIGN KEY (ListingID) REFERENCES Listing(ListingID)
+);
+
+CREATE TABLE Review (
+    ReviewID INT PRIMARY KEY,
+    ReviewerID INT,
+    ReviewedUserID INT,
+    Rating INT CHECK (Rating >= 1 AND Rating <= 5),
+    Comment TEXT,
+    Date DATE,
+    FOREIGN KEY (ReviewerID) REFERENCES User(UserID),
+    FOREIGN KEY (ReviewedUserID) REFERENCES User(UserID)
+);
+
+CREATE TABLE Payment (
+    PaymentID INT PRIMARY KEY,
+    BookingID INT,
+    Amount DECIMAL(10, 2),
+    Date DATE,
+    Status ENUM('Pending', 'Completed', 'Failed'),
+    FOREIGN KEY (BookingID) REFERENCES Booking(BookingID)
+);
+
+CREATE TABLE SocialNetwork (
+    SocialNetworkID INT PRIMARY KEY,
+    Name VARCHAR(100),
+    URL VARCHAR(255)
+);
+
+CREATE TABLE UserSocialNetwork (
+    UserSocialNetworkID INT PRIMARY KEY,
+    UserID INT,
+    SocialNetworkID INT,
+    SocialNetworkProfileURL VARCHAR(255),
+    FOREIGN KEY (UserID) REFERENCES User(UserID),
+    FOREIGN KEY (SocialNetworkID) REFERENCES SocialNetwork(SocialNetworkID)
+);
+
+CREATE TABLE Message (
+    MessageID INT PRIMARY KEY,
+    SenderID INT,
+    ReceiverID INT,
+    Content TEXT,
+    Timestamp TIMESTAMP,
+    FOREIGN KEY (SenderID) REFERENCES User(UserID),
+    FOREIGN KEY (ReceiverID) REFERENCES User(UserID)
+);
+
+CREATE TABLE Amenity (
+    AmenityID INT PRIMARY KEY,
+    Name VARCHAR(100)
+);
+
+CREATE TABLE ListingAmenity (
+    ListingAmenityID INT PRIMARY KEY,
+    ListingID INT,
+    AmenityID INT,
+    FOREIGN KEY (ListingID) REFERENCES Listing(ListingID),
+    FOREIGN KEY (AmenityID) REFERENCES Amenity(AmenityID)
+);
+
+CREATE TABLE Maintenance (
+    MaintenanceID INT PRIMARY KEY,
+    ListingID INT,
+    Description TEXT,
+    DateScheduled DATE,
+    Status ENUM('Pending', 'Completed'),
+    FOREIGN KEY (ListingID) REFERENCES Listing(ListingID)
+);
+
+CREATE TABLE ListingPhoto (
+    ListingPhotoID INT PRIMARY KEY,
+    ListingID INT,
+    PhotoURL VARCHAR(255),
+    FOREIGN KEY (ListingID) REFERENCES Listing(ListingID)
+);
+
+CREATE TABLE Coupon (
+    CouponID INT PRIMARY KEY,
+    Code VARCHAR(50),
+    DiscountPercentage DECIMAL(5, 2),
+    ExpiryDate DATE
+);
+
+CREATE TABLE BookingCoupon (
+    BookingCouponID INT PRIMARY KEY,
+    BookingID INT,
+    CouponID INT,
+    FOREIGN KEY (BookingID) REFERENCES Booking(BookingID),
+    FOREIGN KEY (CouponID) REFERENCES Coupon(CouponID)
+);
+
+CREATE TABLE TransactionHistory (
+    TransactionID INT PRIMARY KEY,
+    UserID INT,
+    PaymentID INT,
+    BookingID INT,
+    TransactionDate DATE,
+    Amount DECIMAL(10, 2),
+    Status ENUM('Pending', 'Completed', 'Failed'),
+    FOREIGN KEY (UserID) REFERENCES User(UserID),
+    FOREIGN KEY (PaymentID) REFERENCES Payment(PaymentID),
+    FOREIGN KEY (BookingID) REFERENCES Booking(BookingID)
+);
