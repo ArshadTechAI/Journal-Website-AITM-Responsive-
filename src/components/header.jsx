@@ -345,6 +345,7 @@
 // // export default Header;
 
 
+import React, { useState, useEffect } from 'react';
 
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -352,9 +353,54 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
 function Header() {
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 980);
+
+  useEffect(() => {
+    const handleResize = () => {
+        setIsSmallScreen(window.innerWidth <= 980);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+        window.removeEventListener('resize', handleResize); // Cleanup listener on component unmount
+    };
+  }, []);
+
+  if (isSmallScreen) {
+    return (
+      <Navbar style={{display: 'flex', flexDirection: 'column'}} expand="lg" className="bg-body-tertiary">
+      <Container style={{display: 'flex',}}>
+        <Navbar.Brand href="#home">
+          
+        <img
+          src="/images/logo_new.png" // Replace with your logo path
+          alt="IJESTM Logo"
+          width="200"
+          className="d-inline-block align-top"
+        />
+        </Navbar.Brand>
+        
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link style={{ backgroundColor: '#003366', color: 'white', border: '1px solid white', borderRadius: isSmallScreen ? '0px' : '8px', padding: '10px'}} href="/">Home</Nav.Link>
+              <Nav.Link style={{ backgroundColor: '#003366', color: 'white', border: '1px solid white', borderRadius: isSmallScreen ? '0px' : '8px', padding: '10px'}} href="/aim-scope">Aim & Scope</Nav.Link>
+              <Nav.Link style={{ backgroundColor: '#003366', color: 'white', border: '1px solid white', borderRadius: isSmallScreen ? '0px' : '8px', padding: '10px'}} href="/editorial-team">Editorial Team</Nav.Link>
+              <Nav.Link style={{ backgroundColor: '#003366', color: 'white', border: '1px solid white', borderRadius: isSmallScreen ? '0px' : '8px', padding: '10px'}} href="/submissions">Submissions</Nav.Link>
+              <Nav.Link style={{ backgroundColor: '#003366', color: 'white', border: '1px solid white', borderRadius: isSmallScreen ? '0px' : '8px', padding: '10px'}} href="/current">Current</Nav.Link>
+              <Nav.Link style={{ backgroundColor: '#003366', color: 'white', border: '1px solid white', borderRadius: isSmallScreen ? '0px' : '8px', padding: '10px'}} href="/archives">Archives</Nav.Link>
+              <Nav.Link style={{ backgroundColor: '#003366', color: 'white', border: '1px solid white', borderRadius: isSmallScreen ? '0px' : '8px', padding: '10px'}} href="/indexing">Indexing</Nav.Link>
+              <Nav.Link style={{ backgroundColor: '#003366', color: 'white', border: '1px solid white', borderRadius: isSmallScreen ? '0px' : '8px', padding: '10px'}} href="/publication-ethics">Publication Ethics</Nav.Link>
+              <Nav.Link style={{ backgroundColor: '#003366', color: 'white', border: '1px solid white', borderRadius: isSmallScreen ? '0px' : '8px', padding: '10px'}} href="/contact-us">Contact Us</Nav.Link>
+            </Nav>
+          </Navbar.Collapse> 
+      </Container>
+    </Navbar>
+    );
+  }
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
-      <Container>
+    <Navbar style={{display: 'flex', flexDirection: 'column'}} expand="lg" className="bg-body-tertiary">
+      <Container style={{display: 'flex',}}>
         <Navbar.Brand href="#home">
           
         <img
@@ -365,21 +411,42 @@ function Header() {
           className="d-inline-block align-top"
         />
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        
+          {/* <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link style={{ backgroundColor: '#003366', color: 'white', border: '1px solid white', borderRadius: isSmallScreen ? '0px' : '8px', padding: '10px'}} href="/">Home</Nav.Link>
+              <Nav.Link style={{ backgroundColor: '#003366', color: 'white', border: '1px solid white', borderRadius: isSmallScreen ? '0px' : '8px', padding: '10px'}} href="/aim-scope">Aim & Scope</Nav.Link>
+              <Nav.Link style={{ backgroundColor: '#003366', color: 'white', border: '1px solid white', borderRadius: isSmallScreen ? '0px' : '8px', padding: '10px'}} href="/editorial-team">Editorial Team</Nav.Link>
+              <Nav.Link style={{ backgroundColor: '#003366', color: 'white', border: '1px solid white', borderRadius: isSmallScreen ? '0px' : '8px', padding: '10px'}} href="/submissions">Submissions</Nav.Link>
+              <Nav.Link style={{ backgroundColor: '#003366', color: 'white', border: '1px solid white', borderRadius: isSmallScreen ? '0px' : '8px', padding: '10px'}} href="/current">Current</Nav.Link>
+              <Nav.Link style={{ backgroundColor: '#003366', color: 'white', border: '1px solid white', borderRadius: isSmallScreen ? '0px' : '8px', padding: '10px'}} href="/archives">Archives</Nav.Link>
+              <Nav.Link style={{ backgroundColor: '#003366', color: 'white', border: '1px solid white', borderRadius: isSmallScreen ? '0px' : '8px', padding: '10px'}} href="/indexing">Indexing</Nav.Link>
+              <Nav.Link style={{ backgroundColor: '#003366', color: 'white', border: '1px solid white', borderRadius: isSmallScreen ? '0px' : '8px', padding: '10px'}} href="/publication-ethics">Publication Ethics</Nav.Link>
+              <Nav.Link style={{ backgroundColor: '#003366', color: 'white', border: '1px solid white', borderRadius: isSmallScreen ? '0px' : '8px', padding: '10px'}} href="/contact-us">Contact Us</Nav.Link>
+            </Nav>
+          </Navbar.Collapse>  */}
+        
+        <h1  style={{ textAlign: 'center', fontSize: '33px'}}>International Journal of Engineering, Science, Technology <br /> and Manangement</h1>
+      </Container>
+
+      <hr style={{color: 'gray'}}/>
+      <div style={{height: '10px'}}></div>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/aim-scope">Aim & Scope</Nav.Link>
-            <Nav.Link href="/editorial-team">Editorial Team</Nav.Link>
-            <Nav.Link href="/submissions">Submissions</Nav.Link>
-            <Nav.Link href="/current">Current</Nav.Link>
-            <Nav.Link href="/archives">Archives</Nav.Link>
-            <Nav.Link href="/indexing">Indexing</Nav.Link>
-            <Nav.Link href="/publication-ethics">Publication Ethics</Nav.Link>
-            <Nav.Link href="/contact-us">Contact Us</Nav.Link>
+          {/* <Nav className="me-auto" style={{display: 'flex',alignItems: 'center', justifyContent: 'space-evenly'}}> */}
+          <Nav className="me-auto" style={{display: 'flex',alignItems: 'center', justifyContent: 'space-evenly'}}>
+            <Nav.Link style={{ backgroundColor: '#003366', color: 'white', border: '1px solid white', marginLeft: isSmallScreen ? '0px' : '10px', borderRadius: isSmallScreen ? '0px' : '8px', padding: '10px'}} href="/">Home</Nav.Link>
+            <Nav.Link style={{ backgroundColor: '#003366', color: 'white', border: '1px solid white', marginLeft: isSmallScreen ? '0px' : '10px', borderRadius: isSmallScreen ? '0px' : '8px', padding: '10px'}} href="/aim-scope">Aim & Scope</Nav.Link>
+            <Nav.Link style={{ backgroundColor: '#003366', color: 'white', border: '1px solid white', marginLeft: isSmallScreen ? '0px' : '10px', borderRadius: isSmallScreen ? '0px' : '8px', padding: '10px'}} href="/editorial-team">Editorial Team</Nav.Link>
+            <Nav.Link style={{ backgroundColor: '#003366', color: 'white', border: '1px solid white', marginLeft: isSmallScreen ? '0px' : '10px', borderRadius: isSmallScreen ? '0px' : '8px', padding: '10px'}} href="/submissions">Submissions</Nav.Link>
+            <Nav.Link style={{ backgroundColor: '#003366', color: 'white', border: '1px solid white', marginLeft: isSmallScreen ? '0px' : '10px', borderRadius: isSmallScreen ? '0px' : '8px', padding: '10px'}} href="/current">Current</Nav.Link>
+            <Nav.Link style={{ backgroundColor: '#003366', color: 'white', border: '1px solid white', marginLeft: isSmallScreen ? '0px' : '10px', borderRadius: isSmallScreen ? '0px' : '8px', padding: '10px'}} href="/archives">Archives</Nav.Link>
+            <Nav.Link style={{ backgroundColor: '#003366', color: 'white', border: '1px solid white', marginLeft: isSmallScreen ? '0px' : '10px', borderRadius: isSmallScreen ? '0px' : '8px', padding: '10px'}} href="/indexing">Indexing</Nav.Link>
+            <Nav.Link style={{ backgroundColor: '#003366', color: 'white', border: '1px solid white', marginLeft: isSmallScreen ? '0px' : '10px', borderRadius: isSmallScreen ? '0px' : '8px', padding: '10px'}} href="/publication-ethics">Publication Ethics</Nav.Link>
+            <Nav.Link style={{ backgroundColor: '#003366', color: 'white', border: '1px solid white', marginLeft: isSmallScreen ? '0px' : '10px', borderRadius: isSmallScreen ? '0px' : '8px', padding: '10px'}} href="/contact-us">Contact Us</Nav.Link>
           </Nav>
         </Navbar.Collapse>
-      </Container>
     </Navbar>
   );
 }

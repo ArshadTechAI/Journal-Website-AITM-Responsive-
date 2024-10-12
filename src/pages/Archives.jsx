@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getFirestore, collection, getDocs, doc, getDoc } from "firebase/firestore/lite";
+import { collection, getDocs, doc, getDoc } from "firebase/firestore/lite";
 import { db } from "../backend/firebase"; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilePdf } from '@fortawesome/free-solid-svg-icons';
